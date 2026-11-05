@@ -1,0 +1,371 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WASH BOOK - Doorstep Car and Two-Wheeler Wash Booking Service</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Link to External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =========================================================
+       HEADER NAVIGATION BAR - WASH BOOK
+       ========================================================= -->
+  <header id="mainHeader">
+    <div class="brand">WASH BOOK</div>
+    <nav>
+      <ul>
+        <li><a href="javascript:void(0)" onclick="goToPage('homePage')">Home</a></li>
+        <li><a href="javascript:void(0)" onclick="goToPage('servicesPage')">Services</a></li>
+        <li><a href="javascript:void(0)" onclick="goToPage('vehiclePage')">Select Vehicle</a></li>
+        <li><a href="javascript:void(0)" onclick="goToPage('bookingPage')">Book Wash</a></li>
+        <li><a href="javascript:void(0)" onclick="logoutUser()">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- =========================================================
+       MAIN CONTENT CONTAINER
+       ========================================================= -->
+  <div class="main-content">
+
+    <!-- 1. LOGIN PAGE -->
+    <section id="loginPage" class="page-section active">
+      <div class="card">
+        <h2>WASH BOOK</h2>
+        <p class="subtext">Admin Login - Doorstep Wash Booking Portal</p>
+        
+        <div class="hint-box">
+          <strong>Default Login Credentials:</strong><br>
+          Username: <b>admin</b><br>
+          Password: <b>admin123</b>
+        </div>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label for="loginUsername">Username</label>
+            <input type="text" id="loginUsername" placeholder="Enter username (admin)" required>
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="Enter password (admin123)" required>
+          </div>
+
+          <button type="submit" class="btn">Login to WASH BOOK</button>
+          <div id="loginError" class="error-msg">Invalid username or password. Please try again.</div>
+        </form>
+      </div>
+    </section>
+
+    <!-- 2. BOOKING PAGE (Directly opens after login) -->
+    <section id="bookingPage" class="page-section">
+      <div class="card">
+        <h2>Book Doorstep Wash</h2>
+        <p class="subtext">WASH BOOK doorstep cleaning service at your home or office</p>
+
+        <form id="washBookingForm" onsubmit="handleBooking(event)">
+          
+          <div class="form-group">
+            <label for="customerName">Customer Full Name</label>
+            <input type="text" id="customerName" placeholder="e.g. Rahul Sharma" required>
+          </div>
+
+          <div class="form-group">
+            <label for="customerPhone">Phone Number</label>
+            <input type="text" id="customerPhone" placeholder="e.g. 9876543210" required>
+          </div>
+
+          <div class="form-group">
+            <label for="bookVehicle">Vehicle Type</label>
+            <select id="bookVehicle" required>
+              <option value="">-- Choose Vehicle --</option>
+              <option value="Hatchback / Sedan Car">Car (Sedan / Hatchback)</option>
+              <option value="SUV / Large Car">SUV / Large Car</option>
+              <option value="Two-Wheeler / Bike">Bike / Motorcycle</option>
+              <option value="Scooter / Scooty">Scooty / Scooter</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="bookService">Select Wash Package</label>
+            <select id="bookService" onchange="updatePayAmount()" required>
+              <option value="">-- Choose Wash Package --</option>
+              <option value="Quick Exterior Foam Wash (INR 299)" data-price="299">Quick Exterior Foam Wash - INR 299</option>
+              <option value="Interior Deep Vacuum and Cleaning (INR 449)" data-price="449">Interior Deep Vacuum and Wipe - INR 449</option>
+              <option value="Full Complete Wash (Inside and Outside) (INR 699)" data-price="699">Full Wash (Exterior + Interior) - INR 699</option>
+              <option value="Premium Wax Polish and Ceramic Shine (INR 999)" data-price="999">Premium Polish and Wax - INR 999</option>
+            </select>
+          </div>
+
+          <!-- Total Bill Amount Box -->
+          <div class="price-box">
+            <span>Payable Amount:</span>
+            <span class="amount" id="displayAmount">INR 0</span>
+          </div>
+
+          <div class="form-group">
+            <label for="paymentMode">Payment Method (Fake Payment)</label>
+            <select id="paymentMode" required>
+              <option value="UPI / QR Code (Google Pay / PhonePe)">UPI (Google Pay / PhonePe / Paytm)</option>
+              <option value="Debit / Credit Card">Debit / Credit Card (Online)</option>
+              <option value="Net Banking">Net Banking</option>
+              <option value="Cash on Delivery (Pay After Wash)">Cash on Delivery (After Wash)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="bookDate">Service Date</label>
+            <input type="date" id="bookDate" required>
+          </div>
+
+          <div class="form-group">
+            <label for="bookTime">Preferred Time Slot</label>
+            <select id="bookTime" required>
+              <option value="">-- Choose Time Slot --</option>
+              <option value="09:00 AM - 11:00 AM">Morning: 09:00 AM - 11:00 AM</option>
+              <option value="11:00 AM - 01:00 PM">Noon: 11:00 AM - 01:00 PM</option>
+              <option value="02:00 PM - 04:00 PM">Afternoon: 02:00 PM - 04:00 PM</option>
+              <option value="04:00 PM - 06:00 PM">Evening: 04:00 PM - 06:00 PM</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="bookAddress">Doorstep Address / House No.</label>
+            <textarea id="bookAddress" rows="2" placeholder="e.g. Flat 302, Green Park Society, Near City Mall" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-green">Pay and Confirm Booking</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 3. FAKE PAYMENT RECEIPT / CONFIRMATION PAGE -->
+    <section id="confirmationPage" class="page-section">
+      <div class="card" style="max-width: 580px;">
+        <h2>Payment Successful</h2>
+        <p class="subtext">Your doorstep wash booking and payment are confirmed.</p>
+
+        <!-- PRINTABLE FAKE RECEIPT CONTAINER -->
+        <div class="receipt-container" id="printableReceipt">
+          
+          <div class="receipt-header">
+            <h3>WASH BOOK SERVICES</h3>
+            <p>Doorstep Car and Two-Wheeler Washing System</p>
+            <p>GSTIN: 07AAACW8920C1Z4 | Contact: support@washbook.com</p>
+            <div class="paid-stamp">PAID AND CONFIRMED</div>
+          </div>
+
+          <div class="receipt-section-title">Invoice and Transaction Info</div>
+          <div class="receipt-row">
+            <span class="receipt-label">Receipt / Invoice No:</span>
+            <span class="receipt-value" id="recBookingId">#WB-1092</span>
+          </div>
+          <div class="receipt-row">
+            <span class="receipt-label">Transaction ID:</span>
+            <span class="receipt-value" id="recTxnId">TXN-UPI-74928103</span>
+          </div>
+          <div class="receipt-row">
+            <span class="receipt-label">Payment Date and Time:</span>
+            <span class="receipt-value" id="recPaymentTime">31-Oct-2026, 03:07 PM</span>
+          </div>
+          <div class="receipt-row">
+            <span class="receipt-label">Payment Mode:</span>
+            <span class="receipt-value" id="recPaymentMode">UPI (PhonePe / GPay)</span>
+          </div>
+          <div class="receipt-row">
+            <span class="receipt-label">Payment Status:</span>
+            <span class="receipt-value" style="color:#28a745;font-weight:bold;">COMPLETED (SUCCESS)</span>
+          </div>
+
+          <div class="receipt-section-title">Customer and Service Details</div>
+          <div class="receipt-row">
+            <span class="receipt-label">Customer Name:</span>
+            <span class="receipt-value" id="recName">-</span>
+          </div>
+          <div class="receipt-row">
+            <span class="receipt-label">Phone:</span>
+            <span class="receipt-value" id="recPhone">-</span>
+          </div>
+          <div class="receipt-row">
+            <span class="receipt-label">Vehicle Type:</span>
+            <span class="receipt-value" id="recVehicle">-</span>
+          </div>
+          <div class="receipt-row">
+            <span class="receipt-label">Scheduled Date:</span>
+            <span class="receipt-value" id="recDate">-</span>
+          </div>
+          <div class="receipt-row">
+            <span class="receipt-label">Time Slot:</span>
+            <span class="receipt-value" id="recTime">-</span>
+          </div>
+          <div class="receipt-row">
+            <span class="receipt-label">Doorstep Address:</span>
+            <span class="receipt-value" id="recAddress">-</span>
+          </div>
+
+          <div class="receipt-section-title">Billing Summary</div>
+          <table class="receipt-table">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th class="text-right">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="recItemDesc">Wash Package</td>
+                <td class="text-right" id="recBasePrice">INR 0</td>
+              </tr>
+              <tr>
+                <td>Doorstep Convenience and Travel Charge</td>
+                <td class="text-right" style="color:#28a745;">FREE</td>
+              </tr>
+              <tr>
+                <td>GST / Taxes (18% Included)</td>
+                <td class="text-right">INR 0 (Incl.)</td>
+              </tr>
+              <tr class="receipt-total-row">
+                <td>Total Amount Paid</td>
+                <td class="text-right" id="recTotalAmount">INR 0</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="receipt-footer">
+            Thank you for choosing WASH BOOK. Our professional washer will arrive with all equipment on schedule.
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <button type="button" class="btn btn-print" onclick="window.print()">Print / Download Receipt</button>
+        <button type="button" class="btn btn-green" onclick="goToPage('bookingPage')">Book Another Wash</button>
+        <button type="button" class="btn btn-secondary" onclick="goToPage('homePage')">Go to Home</button>
+      </div>
+    </section>
+
+    <!-- 4. HOME PAGE -->
+    <section id="homePage" class="page-section">
+      <div class="card" style="max-width: 650px;">
+        <div class="hero-banner">
+          <h1>Welcome to WASH BOOK</h1>
+          <p>Doorstep Car and Two-Wheeler Wash Booking Service</p>
+        </div>
+
+        <h2>Why Choose WASH BOOK?</h2>
+        <div class="features-grid">
+          <div class="feature-item">
+            <h3>Doorstep Service</h3>
+            <p>Our washer team brings equipment, water, and shampoo directly to your home.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Water Saving Wash</h3>
+            <p>Eco-friendly high-pressure foam wash saves up to 80% water.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Verified Professionals</h3>
+            <p>100% background-checked, trained, and polite washing professionals.</p>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-green" style="margin-top:20px;" onclick="goToPage('bookingPage')">Book Wash Now</button>
+      </div>
+    </section>
+
+    <!-- 5. SERVICES PAGE -->
+    <section id="servicesPage" class="page-section">
+      <div class="card" style="max-width: 600px;">
+        <h2>WASH BOOK Packages</h2>
+        <p class="subtext">Affordable washing packages for cars and two-wheelers</p>
+
+        <div class="service-card-item">
+          <div class="service-info">
+            <h3>Exterior Foam Wash</h3>
+            <p>Pressure rinse, rich snow foam, tire polish and microfiber dry</p>
+          </div>
+          <div>
+            <span class="service-price">INR 299</span>
+            <button class="btn btn-small" onclick="selectServiceFromPage('Quick Exterior Foam Wash (INR 299)')">Select</button>
+          </div>
+        </div>
+
+        <div class="service-card-item">
+          <div class="service-info">
+            <h3>Interior Deep Cleaning</h3>
+            <p>Seat vacuuming, dashboard polish, glass cleaner and fragrance</p>
+          </div>
+          <div>
+            <span class="service-price">INR 449</span>
+            <button class="btn btn-small" onclick="selectServiceFromPage('Interior Deep Vacuum and Cleaning (INR 449)')">Select</button>
+          </div>
+        </div>
+
+        <div class="service-card-item">
+          <div class="service-info">
+            <h3>Full Complete Wash</h3>
+            <p>Exterior foam wash + Interior deep vacuum + engine bay clean</p>
+          </div>
+          <div>
+            <span class="service-price">INR 699</span>
+            <button class="btn btn-small" onclick="selectServiceFromPage('Full Complete Wash (Inside and Outside) (INR 699)')">Select</button>
+          </div>
+        </div>
+
+        <div class="service-card-item">
+          <div class="service-info">
+            <h3>Premium Ceramic and Wax</h3>
+            <p>Complete wash + machine wax buffing + hydrophobic coat</p>
+          </div>
+          <div>
+            <span class="service-price">INR 999</span>
+            <button class="btn btn-small" onclick="selectServiceFromPage('Premium Wax Polish and Ceramic Shine (INR 999)')">Select</button>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-secondary" onclick="goToPage('bookingPage')">Back to Booking</button>
+      </div>
+    </section>
+
+    <!-- 6. SELECT VEHICLE PAGE -->
+    <section id="vehiclePage" class="page-section">
+      <div class="card">
+        <h2>Select Your Vehicle</h2>
+        <p class="subtext">Choose your vehicle type to book the wash</p>
+
+        <div class="vehicle-grid">
+          <div class="vehicle-card" onclick="selectVehicleFromPage('Hatchback / Sedan Car')">
+            <span class="vehicle-tag">CAR</span>
+            <br><b>Sedan / Hatchback</b>
+            <p style="font-size:12px;color:#666;margin-top:4px;">City cars & standard sedans</p>
+          </div>
+
+          <div class="vehicle-card" onclick="selectVehicleFromPage('SUV / Large Car')">
+            <span class="vehicle-tag">SUV</span>
+            <br><b>SUV / Compact SUV</b>
+            <p style="font-size:12px;color:#666;margin-top:4px;">Creta, Thar, Scorpio</p>
+          </div>
+
+          <div class="vehicle-card" onclick="selectVehicleFromPage('Two-Wheeler / Bike')">
+            <span class="vehicle-tag">BIKE</span>
+            <br><b>Motorcycle</b>
+            <p style="font-size:12px;color:#666;margin-top:4px;">Sports & Commuter bikes</p>
+          </div>
+
+          <div class="vehicle-card" onclick="selectVehicleFromPage('Scooter / Scooty')">
+            <span class="vehicle-tag">SCOOTER</span>
+            <br><b>Scooty / Scooter</b>
+            <p style="font-size:12px;color:#666;margin-top:4px;">Activa, Jupiter, Access</p>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-secondary" onclick="goToPage('bookingPage')">Back to Booking</button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Link to External JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>

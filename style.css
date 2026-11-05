@@ -1,0 +1,495 @@
+﻿/* =========================================================
+   WASH BOOK - STYLESHEET (style.css)
+   Professional Design 
+   Responsive for Mobile Devices & Laptops
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #eef2f7;
+  color: #333333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------------- Top Navigation Bar ---------------- */
+header {
+  background-color: #0056b3;
+  color: #ffffff;
+  padding: 14px 20px;
+  display: none; /* Hidden on login, shown after login */
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+}
+
+nav ul li a:hover {
+  background-color: #003d82;
+}
+
+/* ---------------- Main Container ---------------- */
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 15px;
+}
+
+/* Solid White Card - Prevents any Black Screen */
+.card {
+  background-color: #ffffff;
+  color: #222222;
+  width: 100%;
+  max-width: 540px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+  margin: auto;
+}
+
+h2 {
+  color: #0056b3;
+  text-align: center;
+  margin-bottom: 8px;
+  font-size: 24px;
+}
+
+p.subtext {
+  text-align: center;
+  color: #666666;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* ---------------- Form Elements ---------------- */
+.form-group {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333333;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 15px;
+  background-color: #ffffff;
+  color: #333333;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #0056b3;
+}
+
+/* Amount Highlight Box in Form */
+.price-box {
+  background-color: #e8f4fd;
+  border: 1px solid #b8daff;
+  padding: 12px 15px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  font-weight: bold;
+  font-size: 15px;
+  color: #004085;
+}
+
+.price-box span.amount {
+  font-size: 20px;
+  color: #28a745;
+}
+
+/* ---------------- Buttons ---------------- */
+.btn {
+  width: 100%;
+  background-color: #0056b3;
+  color: #ffffff;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+}
+
+.btn:hover {
+  background-color: #004085;
+}
+
+.btn-green {
+  background-color: #28a745;
+}
+
+.btn-green:hover {
+  background-color: #218838;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  margin-top: 10px;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.btn-print {
+  background-color: #17a2b8;
+  margin-top: 10px;
+}
+
+.btn-print:hover {
+  background-color: #138496;
+}
+
+.btn-small {
+  width: auto;
+  padding: 6px 14px;
+  font-size: 14px;
+  margin-top: 0;
+}
+
+/* ---------------- Alerts & Info ---------------- */
+.error-msg {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 12px;
+  font-size: 14px;
+  text-align: center;
+  display: none;
+}
+
+.hint-box {
+  background-color: #e7f3fe;
+  border-left: 4px solid #0056b3;
+  padding: 12px;
+  margin-bottom: 18px;
+  font-size: 13px;
+  color: #004085;
+  border-radius: 4px;
+  line-height: 1.5;
+}
+
+/* ---------------- Page Display Controller ---------------- */
+.page-section {
+  display: none; /* Hidden by default */
+  width: 100%;
+}
+
+.page-section.active {
+  display: block; /* Visible when active */
+}
+
+/* ---------------- Home Page Elements ---------------- */
+.hero-banner {
+  background: linear-gradient(135deg, #0056b3, #003366);
+  color: #ffffff;
+  text-align: center;
+  padding: 35px 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+.hero-banner h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.feature-item {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  padding: 18px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.feature-item h3 {
+  color: #0056b3;
+  margin-bottom: 8px;
+  font-size: 17px;
+}
+
+/* ---------------- Services Page Elements ---------------- */
+.service-card-item {
+  border: 1px solid #dddddd;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background-color: #fdfdfd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.service-info h3 {
+  color: #0056b3;
+  font-size: 17px;
+}
+
+.service-info p {
+  color: #666666;
+  font-size: 13px;
+}
+
+.service-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #28a745;
+}
+
+/* ---------------- Vehicle Page Elements ---------------- */
+.vehicle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.vehicle-card {
+  border: 2px solid #dddddd;
+  border-radius: 8px;
+  padding: 18px 10px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #f9fbfd;
+  transition: all 0.2s;
+}
+
+.vehicle-card:hover {
+  border-color: #0056b3;
+  background-color: #eef5fc;
+  transform: translateY(-2px);
+}
+
+.vehicle-tag {
+  display: inline-block;
+  background-color: #0056b3;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* ---------------- FAKE RECEIPT / INVOICE STYLING ---------------- */
+.receipt-container {
+  background-color: #ffffff;
+  border: 2px solid #0056b3;
+  border-radius: 10px;
+  padding: 22px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+
+.receipt-header {
+  text-align: center;
+  border-bottom: 2px dashed #cccccc;
+  padding-bottom: 12px;
+  margin-bottom: 15px;
+}
+
+.receipt-header h3 {
+  color: #0056b3;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+}
+
+.receipt-header p {
+  font-size: 13px;
+  color: #666666;
+  margin-top: 3px;
+}
+
+/* Clean Green Paid Stamp (No Emojis) */
+.paid-stamp {
+  display: inline-block;
+  background-color: #d4edda;
+  color: #155724;
+  border: 2px solid #28a745;
+  padding: 6px 16px;
+  font-weight: bold;
+  border-radius: 20px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-top: 8px;
+}
+
+.receipt-section-title {
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #0056b3;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 3px;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 14px;
+}
+
+.receipt-label {
+  color: #555555;
+  font-weight: 600;
+}
+
+.receipt-value {
+  color: #111111;
+  font-weight: 500;
+  text-align: right;
+  max-width: 60%;
+}
+
+/* Price Table in Receipt */
+.receipt-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.receipt-table th {
+  background-color: #f1f5f9;
+  color: #333333;
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.receipt-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.receipt-table .text-right {
+  text-align: right;
+}
+
+.receipt-total-row {
+  background-color: #e8f4fd;
+  font-weight: bold;
+  font-size: 15px;
+  color: #004085;
+}
+
+.receipt-footer {
+  border-top: 2px dashed #cccccc;
+  padding-top: 12px;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 12px;
+  color: #777777;
+}
+
+/* Print Specific Styling */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  header, .btn, .subtext, nav {
+    display: none !important;
+  }
+  #confirmationPage, #confirmationPage * {
+    visibility: visible;
+  }
+  #confirmationPage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+/* Responsive for Mobile Screens */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  nav ul {
+    justify-content: center;
+    gap: 8px;
+  }
+  .card {
+    padding: 20px;
+  }
+  .receipt-container {
+    padding: 15px;
+  }
+  .hero-banner h1 {
+    font-size: 22px;
+  }
+}
