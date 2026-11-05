@@ -7,7 +7,7 @@ PROJECT FOLDER: WASHBOOK_
 FILES INCLUDED:
 - index.html (Main HTML Structure)
 - style.css  (Formal Responsive CSS)
-- script.js  (Simple 1st Year B.Tech CSE JavaScript)
+- script.js 
 
 HOW TO RUN IN VS CODE:
 1. Open VS Code.
